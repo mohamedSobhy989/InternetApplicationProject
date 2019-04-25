@@ -16,19 +16,22 @@ namespace InternetApplicationProject.Models
         public string project_Name { get; set; }
 
         [Required]
-        public Users customer { get; set; }
+        [Display(Name = "customer ID")]
+        //public Users customer { get; set; }
         public int customerid { get; set; }
 
         // {0 , 1}
         // 0 is not assigned to director 
         // 1 is assigned to director
         [Required]
+        [Display(Name = "Is Project Assigned")]
         public int projectState { get; set; }
 
         // {0 , 1}
         // 0 is not finished
         // 1 is finished
         [Required]
+        [Display(Name = "Is Project Delevered")]
         public int projectDelevered { get; set; }
 
         [Display(Name = "Project Price")]

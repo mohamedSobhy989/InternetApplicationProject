@@ -1,0 +1,87 @@
+﻿@model InternetApplicationProject.Models.Users
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav  navbar-fixed-side navbar-fixed-side-left">
+                <li>@Html.ActionLink("User Control", "shownames")</li>
+                <li>@Html.ActionLink("Posts Control", "showprojects")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@if (Model != null) {
+    <div>
+        <hr />
+        <dl class="dl-horizontal" >
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.job_description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.job_description)
+            </dd>
+        </dl>
+    </div> 
+}
+else {
+    <h2>Information can't be viewed now</h2>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -48,9 +48,7 @@ namespace InternetApplicationProject.Migrations
                         Price = c.Single(nullable: false),
                         description = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.customerid, cascadeDelete: true)
-                .Index(t => t.customerid);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.projectMembers",
@@ -181,7 +179,6 @@ namespace InternetApplicationProject.Migrations
             DropForeignKey("dbo.projectMembers", "user_Id", "dbo.Users");
             DropForeignKey("dbo.projectMembers", "projectid", "dbo.Projects");
             DropForeignKey("dbo.projectAssignedDirectors", "projectID", "dbo.Projects");
-            DropForeignKey("dbo.Projects", "customerid", "dbo.Users");
             DropForeignKey("dbo.projectAssignedDirectors", "directoryID", "dbo.Users");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
@@ -195,7 +192,6 @@ namespace InternetApplicationProject.Migrations
             DropIndex("dbo.requestsForTeams", new[] { "projectID" });
             DropIndex("dbo.projectMembers", new[] { "user_Id" });
             DropIndex("dbo.projectMembers", new[] { "projectid" });
-            DropIndex("dbo.Projects", new[] { "customerid" });
             DropIndex("dbo.projectAssignedDirectors", new[] { "directoryID" });
             DropIndex("dbo.projectAssignedDirectors", new[] { "projectID" });
             DropTable("dbo.AspNetUserLogins");

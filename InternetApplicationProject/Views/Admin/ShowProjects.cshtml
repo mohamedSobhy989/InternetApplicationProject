@@ -1,0 +1,77 @@
+﻿@model IEnumerable<InternetApplicationProject.Models.Projects>
+
+@{
+    ViewBag.Title = "ShowProjects";
+}
+
+<h2>ShowProjects</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateProject")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectDelevered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.project_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerid)
+        </td>
+        <td>
+            @switch (item.projectState)
+            {
+                case 1:@Html.Label("True"); break;
+                case 0:@Html.Label("False"); break;
+            }
+
+        </td>
+        <td>
+            @switch (item.projectDelevered)
+            {
+                case 1:@Html.Label("True"); break;
+                case 0:@Html.Label("False"); break;
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditProject", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteProject", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
