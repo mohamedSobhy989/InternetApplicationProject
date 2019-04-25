@@ -168,16 +168,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201904220216388_InitialMigration6.cs" />
+    <Compile Include="Migrations\201904220216388_InitialMigration6.Designer.cs">
+      <DependentUpon>201904220216388_InitialMigration6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904221434250_InitialMigration7.cs" />
+    <Compile Include="Migrations\201904221434250_InitialMigration7.Designer.cs">
+      <DependentUpon>201904221434250_InitialMigration7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904231944305_AddPhotoToProject.cs" />
+    <Compile Include="Migrations\201904231944305_AddPhotoToProject.Designer.cs">
+      <DependentUpon>201904231944305_AddPhotoToProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ProjectWithMembers.cs" />
+    <Content Include="App_Code\UserRoles.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthontcationController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TeamLeaderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,10 +199,28 @@
     <Compile Include="Migrations\201904092014348_InitialMigration.Designer.cs">
       <DependentUpon>201904092014348_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904101530474_InitialMigration1.cs" />
+    <Compile Include="Migrations\201904101530474_InitialMigration1.Designer.cs">
+      <DependentUpon>201904101530474_InitialMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101717053_InitialMigration2.cs" />
+    <Compile Include="Migrations\201904101717053_InitialMigration2.Designer.cs">
+      <DependentUpon>201904101717053_InitialMigration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101720279_InitialMigration3.cs" />
+    <Compile Include="Migrations\201904101720279_InitialMigration3.Designer.cs">
+      <DependentUpon>201904101720279_InitialMigration3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101751578_InitialMigration4.cs" />
+    <Compile Include="Migrations\201904101751578_InitialMigration4.Designer.cs">
+      <DependentUpon>201904101751578_InitialMigration4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904110355400_InitialMigration5.cs" />
+    <Compile Include="Migrations\201904110355400_InitialMigration5.Designer.cs">
+      <DependentUpon>201904110355400_InitialMigration5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\handleProjects.cs" />
-    <Compile Include="Models\handleUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\projectAssignedDirector.cs" />
@@ -196,21 +228,45 @@
     <Compile Include="Models\Projects.cs" />
     <Compile Include="Models\requestsForTeam.cs" />
     <Compile Include="Models\teamLeaderProjects.cs" />
-    <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\OurUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CustomerStyle\main.css" />
+    <Content Include="Content\CustomerStyle\style.css" />
+    <Content Include="Content\CustomerStyle\util.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\normalize.min.css" />
+    <Content Include="Content\registerstyle.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="fonts\Linearicons-Free.svg" />
+    <Content Include="Image\apple-icon.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\favicon.png" />
+    <Content Include="Image\FB_IMG_1529689848310.jpg" />
+    <Content Include="Image\icon-heart-01.png" />
+    <Content Include="Image\icon-heart-02.png" />
+    <Content Include="Image\login-bg.jpg" />
+    <Content Include="Image\logo-01.png" />
+    <Content Include="Image\logo-dark.png" />
+    <Content Include="Image\product-01.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="fonts\Linearicons-Free.eot" />
+    <Content Include="fonts\Linearicons-Free.ttf" />
+    <Content Include="fonts\Linearicons-Free.woff" />
+    <Content Include="fonts\Linearicons-Free.woff2" />
+    <Content Include="Content\scss\style.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -256,17 +312,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Admin\ShowNames.cshtml" />
-    <Content Include="Views\Admin\Create.cshtml" />
-    <Content Include="Views\Admin\Edit.cshtml" />
-    <Content Include="Views\Admin\ShowProjects.cshtml" />
-    <Content Include="Views\Admin\createProject.cshtml" />
-    <Content Include="Views\Admin\EditProject.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Authontcation\MyLogin.cshtml" />
+    <Content Include="Views\Authontcation\testcode.cshtml" />
+    <Content Include="Views\Authontcation\LoggedIn.cshtml" />
+    <Content Include="Views\Customer\Registration.cshtml" />
+    <Content Include="Views\Shared\CustomerLayout\_CustomerHomePageLayout.cshtml" />
+    <Content Include="Views\Customer\DeleverdProject.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\JoiningProject.cshtml" />
+    <Content Include="Views\Customer\AddProduct.cshtml" />
+    <Content Include="Views\Customer\updateInfo.cshtml" />
+    <Content Include="Views\Customer\UpdateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\TeamLeader\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -284,6 +344,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904092014348_InitialMigration.resx">
       <DependentUpon>201904092014348_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101530474_InitialMigration1.resx">
+      <DependentUpon>201904101530474_InitialMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101717053_InitialMigration2.resx">
+      <DependentUpon>201904101717053_InitialMigration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101720279_InitialMigration3.resx">
+      <DependentUpon>201904101720279_InitialMigration3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101751578_InitialMigration4.resx">
+      <DependentUpon>201904101751578_InitialMigration4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904110355400_InitialMigration5.resx">
+      <DependentUpon>201904110355400_InitialMigration5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904220216388_InitialMigration6.resx">
+      <DependentUpon>201904220216388_InitialMigration6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904221434250_InitialMigration7.resx">
+      <DependentUpon>201904221434250_InitialMigration7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904231944305_AddPhotoToProject.resx">
+      <DependentUpon>201904231944305_AddPhotoToProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

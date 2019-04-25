@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,22 +17,19 @@ namespace InternetApplicationProject.Models
         public string project_Name { get; set; }
 
         [Required]
-        [Display(Name = "customer ID")]
-        //public Users customer { get; set; }
+        //public OurUsers customer { get; set; }
         public int customerid { get; set; }
 
         // {0 , 1}
         // 0 is not assigned to director 
         // 1 is assigned to director
         [Required]
-        [Display(Name = "Is Project Assigned")]
         public int projectState { get; set; }
 
         // {0 , 1}
         // 0 is not finished
         // 1 is finished
         [Required]
-        [Display(Name = "Is Project Delevered")]
         public int projectDelevered { get; set; }
 
         [Display(Name = "Project Price")]
@@ -42,5 +40,12 @@ namespace InternetApplicationProject.Models
         [Display(Name = "Project description")]
         [Required(ErrorMessage = "The Project description is required")]
         public string description { get; set; }
+
+        [Display(Name = "User Photo")]
+        public string PhotoPath { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase imageFile { get; set; }
+
+
     }
 }

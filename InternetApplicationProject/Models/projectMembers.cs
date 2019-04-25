@@ -16,7 +16,7 @@ namespace InternetApplicationProject.Models
 
 
         // Forign key refers to user
-        public Users user { get; set; }
+        public OurUsers user { get; set; }
         public int member { get; set; }
 
         

@@ -16,8 +16,9 @@ namespace InternetApplicationProject
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new { controller = "Authontcation", action = "MyLogin", id = UrlParameter.Optional }
+                //defaults: new { controller = "Customer", action = "Registration", id = UrlParameter.Optional }
+                );
         }
     }
 }

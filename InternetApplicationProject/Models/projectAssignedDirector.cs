@@ -15,7 +15,7 @@ namespace InternetApplicationProject.Models
         public int projectID { get; set; }
 
         // Forign key refers to user (director)
-        public Users directory { get; set; }
+        public OurUsers directory { get; set; }
         public int directoryID { get; set; }
 
     }

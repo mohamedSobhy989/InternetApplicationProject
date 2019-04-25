@@ -11,7 +11,7 @@ namespace InternetApplicationProject.Models
         public int Id { get; set; }
 
         // Forign key refers to user (team leader)
-        public Users teamleader { get; set; }
+        public OurUsers teamleader { get; set; }
         public int teamleaderID { get; set; }
 
         // Forign key refers to project

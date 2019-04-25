@@ -19,7 +19,7 @@ namespace InternetApplicationProject.Models
 
         // this is the member that requested to project
         // Forign key refers to user
-        public Users Member { get; set; }
+        public OurUsers Member { get; set; }
         public int memberID { get; set; }
     }
 }

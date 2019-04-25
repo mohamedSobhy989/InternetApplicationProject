@@ -1,0 +1,109 @@
+﻿@model InternetApplicationProject.Models.OurUsers
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spectre sign up form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/normalize.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/registerstyle.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="signup__container">
+        <div class="container__child signup__thumbnail">
+            <div class="thumbnail__logo">
+
+                <h1 class="logo__text">Spectre</h1>
+            </div>
+            <div class="thumbnail__content text-center">
+                <h1 class="heading--primary">Welcome to Our Web Site.</h1>
+                <h2 class="heading--secondary">Are you ready to join with Us?</h2>
+                <h3 class="heading--secondary">Lets Start !!</h3>
+            </div>
+            <div class="thumbnail__links">
+                <ul class="list-inline m-b-0 text-center">
+                    <li><a href="http://alexdevero.com/" target="_blank"><i class="fa fa-globe"></i></a></li>
+                    <li><a href="https://www.behance.net/alexdevero" target="_blank"><fa class="fa fa-behance"></fa></a></li>
+                    <li><a href="https://github.com/alexdevero" target="_blank"><i class="fa fa-github"></i></a></li>
+                    <li><a href="https://twitter.com/alexdevero" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                </ul>
+            </div>
+            <div class="signup__overlay"></div>
+        </div>
+        <div class="container__child signup__form">
+
+            @using (Html.BeginForm("Registration", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <!--<input class="form-control" type="text" name="username" id="username" placeholder="james.bond" required />-->
+                    @Html.EditorFor(user => user.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                    @Html.ValidationMessageFor(user => user.FirstName)
+                </div>
+                <div class="form-group">
+                    <!--<input class="form-control" type="text" name="username" id="username" placeholder="james.bond" required />-->
+                    @Html.EditorFor(user => user.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                    @Html.ValidationMessageFor(user => user.LastName)
+                </div>
+                <div class="form-group">
+                    <!--<input class="form-control" type="text" name="email" id="email" placeholder="james.bond@spectre.com" required />-->
+                    @Html.EditorFor(user => user.UserEmail, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your E-mail" } })
+                    @Html.ValidationMessageFor(user => user.UserEmail)
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(user => user.UserPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your Password" } })
+                    @Html.ValidationMessageFor(user => user.UserPassword)
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(user => user.confirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm Your Password" } })
+                    @Html.ValidationMessageFor(user => user.confirmPassword)
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(user => user.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your Phone" } })
+                    @Html.ValidationMessageFor(user => user.Phone)
+                </div>
+
+                <div class="form-group" style="color : black;padding:10px;">
+                    @Html.DropDownList("role", EnumHelper.GetSelectList(typeof(InternetApplicationProject.App_Code.UserRoles.userRole)), "User Type");
+                    @Html.ValidationMessageFor(user => user.role)
+                </div>
+
+
+                <div class="form-group">
+                    @Html.EditorFor(user => user.job_description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your job_description" } })
+                    @Html.ValidationMessageFor(user => user.job_description)
+                </div>
+
+
+                <div class="form-group">
+                    <label>Upload Your Photo</label>
+                    <input type="file" name="ImageFile" required />
+                </div>
+
+
+                <div class="m-t-lg">
+                    <ul class="list-inline">
+                        <li>
+                            <input class="btn btn--form" type="submit" value="Register" />
+                        </li>
+                        <li>
+                            <a class="signup__link" href="#">I am already a member</a>
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+

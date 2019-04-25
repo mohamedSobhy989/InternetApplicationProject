@@ -21,7 +21,7 @@ namespace InternetApplicationProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public DbSet<Users> user { get; set; }
+        public DbSet<OurUsers> user { get; set; }
         public DbSet<teamLeaderProjects> TL_Project { get; set; }
         public DbSet<requestsForTeam> R_ForTeam { get; set; }
         public DbSet<Projects> project { get; set; }
