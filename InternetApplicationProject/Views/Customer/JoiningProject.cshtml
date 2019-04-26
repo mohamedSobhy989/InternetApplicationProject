@@ -1,0 +1,58 @@
+﻿@model IEnumerable<InternetApplicationProject.Models.Projects>
+@{
+    ViewBag.Title = "JoiningProject";
+    Layout = "~/Views/Shared/CustomerLayout/_CustomerHomePageLayout.cshtml";
+}
+<br /><br />
+<table class="table table-hover table-striped">
+
+    <div class="edit" style="margin-top: -190px;">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-3" style="margin-left:25px;height:280px;width:25%;margin-top:200px;">
+                <!-- Block2 -->
+                <div class="block2">
+                    <div class="block2-pic hov-img0 " data-label="New" style="height:300px;">
+                        <img src="@Url.Content(item.PhotoPath)" />
+                        <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                            Quick View
+                        </a>
+                    </div>
+
+                    <div class="block2-txt flex-w flex-t p-t-14">
+                        <div class="block2-txt-child1 flex-col-l ">
+                            <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                @Html.DisplayFor(project => item.project_Name)
+                            </a>
+
+                            <span class="stext-105 cl3">
+                                $@Html.DisplayFor(project => item.Price)
+                            </span>
+
+                            <span class="stext-105 cl3">
+                                Description : @Html.DisplayFor(project => item.description)
+                                <br />
+                                this is description for this product
+                            </span>
+                        </div>
+
+                        <div class="block2-txt-child2 flex-r p-t-3">
+                            <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                <img class="icon-heart1 dis-block trans-04" src="~/Image/icon-heart-01.png" />
+                                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/Image/icon-heart-02.png" />
+                            </a>
+                        </div>
+                        <button class="btn btn-outline-primary" type="button" style="width: 45%;background-color:#DDD">
+                            <a href="/Customer/RemoveProduct/@item.Id"> Delete</a>
+                        </button>
+                        <button class="btn btn-outline-primary" type="button" style="width: 45%;background-color:#DDD;margin-top : -56px;margin-left: 50%">
+                            <a href="/Customer/UpdateProduct/@item.Id"> Update</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</table>
