@@ -94,5 +94,23 @@ namespace InternetApplicationProject.Models
             return false;
         }
 
+        //------------------------------------------------------------------
+
+        public string getUserName(int id)
+        {
+            Users user = bda.user.SingleOrDefault(c => c.Id == id);
+            return user.FirstName != null && user.LastName != null ? user.FirstName + " " + user.LastName : "";
+        }
+
+        //-----------------------------------------------------------------
+
+        public bool isDirector(int id)
+        {
+            if(isUser(id))
+            {
+                return bda.user.SingleOrDefault(c => c.Id == id && c.role == 3) == null ? false : true; 
+            }
+            return false;
+        }
     }
 }

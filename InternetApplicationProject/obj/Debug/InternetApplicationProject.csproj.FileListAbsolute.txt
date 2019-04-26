@@ -220,3 +220,4 @@ E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\
 E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.csproj.CopyComplete
 E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.dll
 E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.pdb
+E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.Migrations.initialDb.resources

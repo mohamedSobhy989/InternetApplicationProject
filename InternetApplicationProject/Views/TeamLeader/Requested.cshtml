@@ -1,0 +1,42 @@
+﻿@model IEnumerable<InternetApplicationProject.Models.teamLeaderProjects>
+@using InternetApplicationProject.Models;
+
+@{
+    ViewBag.Title = "Requested";
+}
+
+<h2>Requested</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Project Name");
+        </th>
+        <th>
+            @Html.Label("Director Name")
+        </th>
+        <th>
+            @Html.Label("Your Option");
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(new handleProjects().getProjectName(item.projectID), "ViewProject" , new { id = item.projectID })
+        </td>
+        <td>
+            @Html.ActionLink(new handleUsers().getUserName(item.directorID), "ViewDirector" , new { id = item.directorID })
+        </td>
+        <td>
+            @Html.ActionLink("Accept", "AcceptRequested", new { id = item.Id })
+            @Html.ActionLink("Reject", "RejectRequested", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

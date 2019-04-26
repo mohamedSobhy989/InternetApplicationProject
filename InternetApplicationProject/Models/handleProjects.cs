@@ -75,5 +75,20 @@ namespace InternetApplicationProject.Models
                 bda.SaveChanges();
             }
         }
+
+        //---------------------------------------------------------------
+
+        public string getProjectName(int id)
+        {
+            Projects project = bda.project.SingleOrDefault(c => c.Id == id);
+            return project.project_Name != null ? project.project_Name : "";
+        }
+
+        //---------------------------------------------------------------
+
+        public bool isProject(int id)
+        {
+            return bda.project.ToList().SingleOrDefault(item => item.Id == id) == null ? false : true;
+        }
     }
 }

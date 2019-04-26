@@ -18,10 +18,14 @@ namespace InternetApplicationProject.Models
         public Projects project { get; set; }
         public int projectID { get; set; }
 
+        public int directorID { get; set; }
+
         // {0 , 1 , 2}
         // 0 is not delevered
         // 1 is joining
         // 2 is requested
+
+        // 3 is rejected from the leader
         public int ProjectState { get; set; }
     }
 }
