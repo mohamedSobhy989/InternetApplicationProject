@@ -112,5 +112,12 @@ namespace InternetApplicationProject.Models
             }
             return false;
         }
+
+        //-----------------------------------------------------------------
+
+        public IEnumerable<Users> getMembers()
+        {
+            return bda.user.ToList().Where(c => c.role == 5);
+        }
     }
 }

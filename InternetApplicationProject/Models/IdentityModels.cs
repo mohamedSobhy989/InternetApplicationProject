@@ -27,6 +27,7 @@ namespace InternetApplicationProject.Models
         public DbSet<Projects> project { get; set; }
         public DbSet<projectMembers> projectMember { get; set; }
         public DbSet<projectAssignedDirector> P_AssignDirector { get; set; }
+        public DbSet<FeedBacks> feedback { get; set; }
 
 
 

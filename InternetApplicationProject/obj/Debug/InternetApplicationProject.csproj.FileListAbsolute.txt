@@ -221,3 +221,7 @@ E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\
 E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.dll
 E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.pdb
 E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.Migrations.initialDb.resources
+E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.Migrations.leaderTableUpdate.resources
+E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.Migrations.withFeedback.resources
+E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.Migrations.withFeedback2.resources
+E:\jesus christ\InternetApplicationProject\InternetApplicationProject\obj\Debug\InternetApplicationProject.Migrations.withFeedback21.resources
