@@ -119,5 +119,69 @@ namespace InternetApplicationProject.Models
         {
             return bda.user.ToList().Where(c => c.role == 5);
         }
+
+        //-----------------------------------------------------------------
+
+        public bool isWithRole(int id , int role)
+        {
+            //return true when user is found and with the role given otherwise false
+            if (bda.user.SingleOrDefault(c => c.Id == id) != null)
+            {
+                Users user = getUser(id);
+                if (user.role == role) return true;
+            }
+            return false;
+        }
+
+        //-----------------------------------------------------------------
+
+        public void checkOrNormalize()
+        {
+            foreach(var item1 in bda.R_ForTeam.ToList()) {
+                if(! isWithRole(item1.memberID , 5)) {
+                    bda.R_ForTeam.Remove(item1);
+                    bda.SaveChanges();
+                }
+            }
+
+            foreach (var item2 in bda.TL_Project.ToList()) {
+                if ((! isWithRole(item2.teamleaderID, 4)) || (!isWithRole(item2.directorID, 3))) { //leader-director
+                    bda.TL_Project.Remove(item2);
+                    bda.SaveChanges();
+                }
+                if(! isWithRole(item2.memberOne, 5)) {
+                    item2.memberOne = 0;
+                    bda.SaveChanges();
+                }
+                if (!isWithRole(item2.memberTwo, 5))
+                {
+                    item2.memberTwo = 0;
+                    bda.SaveChanges();
+                }
+                if (!isWithRole(item2.memberThree, 5))
+                {
+                    item2.memberThree = 0;
+                    bda.SaveChanges();
+                }
+            }
+
+            foreach (var item3 in bda.project.ToList())
+            {
+                if (!isWithRole(item3.customerid, 2)) { 
+                    bda.project.Remove(item3);
+                    bda.SaveChanges();
+                }
+            }
+
+            foreach (var item4 in bda.feedback.ToList()) {
+                if ((!isWithRole(item4.memberId, 5)) || (!isWithRole(item4.leaderId, 4))) {
+                    bda.feedback.Remove(item4);
+                    bda.SaveChanges();
+                }
+            }
+
+        }
+
+
     }
 }

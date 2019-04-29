@@ -11,6 +11,8 @@ namespace InternetApplicationProject.Controllers
     {
         public handleUsers users = new handleUsers();
         public handleProjects projects = new handleProjects();
+        public handleMemberFeedBacks feedbacks = new handleMemberFeedBacks();
+
         // GET: Admin
         public ActionResult Index()
         {
@@ -59,6 +61,7 @@ namespace InternetApplicationProject.Controllers
         public ActionResult Edit(int id , Users newUser)
         {
             users.updateUser(id, newUser);
+            users.checkOrNormalize();
             return RedirectToAction("Index");
         }
 
@@ -69,6 +72,7 @@ namespace InternetApplicationProject.Controllers
             if(id == null) { return RedirectToAction("Index"); }
             users.deleteUser(id.Value);
             //reflect all deletions here
+            users.checkOrNormalize();
             return RedirectToAction("Index");
         }
 
@@ -116,6 +120,7 @@ namespace InternetApplicationProject.Controllers
             if (id == null) { return RedirectToAction("Index"); }
             projects.deleteProject(id.Value);
             //reflect all deletions here
+            projects.checkOrNormalize();
             return RedirectToAction("Index");
         }
 
