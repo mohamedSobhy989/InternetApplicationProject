@@ -7,6 +7,7 @@ using InternetApplicationProject.Models;
 
 namespace InternetApplicationProject.Controllers
 {
+    [Authorize]
     public class TeamLeaderController : Controller
     {
         public handleTeamLeader leaders = new handleTeamLeader();
@@ -17,7 +18,8 @@ namespace InternetApplicationProject.Controllers
 
         public ActionResult Index()
         {
-            Users currentUser = users.getUser(11);
+            
+            Users currentUser = users.getUser(Convert.ToInt32(Session["userID"]));
             if(currentUser == null)
             {
                 return HttpNotFound();
@@ -29,7 +31,7 @@ namespace InternetApplicationProject.Controllers
 
         public ActionResult Requested()
         {
-            return View(leaders.getRequestedProjects(11));
+            return View(leaders.getRequestedProjects(Convert.ToInt32(Session["userID"])));
         }
 
         //------------------------------------------------------------------
@@ -39,7 +41,7 @@ namespace InternetApplicationProject.Controllers
 
             if(id == null) { return RedirectToAction("Requested"); }
             if(! users.isDirector(id.Value)) { return RedirectToAction("Requested"); }
-            if(! leaders.isRelated(11 , id.Value)) { return RedirectToAction("Requested"); }
+            if(! leaders.isRelated(Convert.ToInt32(Session["userID"]), id.Value)) { return RedirectToAction("Requested"); }
 
             Users u = users.getUser(id.Value);
             if(u == null) { return RedirectToAction("Requested"); }
@@ -52,7 +54,7 @@ namespace InternetApplicationProject.Controllers
         {
             if (id == null) { return RedirectToAction("Requested"); }
             if (! projects.isProject(id.Value)) { return RedirectToAction("Requested"); }
-            if (! leaders.isProjectRelated(11, id.Value)) { return RedirectToAction("Requested"); }
+            if (! leaders.isProjectRelated(Convert.ToInt32(Session["userID"]), id.Value)) { return RedirectToAction("Requested"); }
 
             Projects project = projects.getProject(id.Value);
             return View(project);
@@ -65,7 +67,7 @@ namespace InternetApplicationProject.Controllers
             if(id == null) { return RedirectToAction("Requested"); }
             
             teamLeaderProjects item = leaders.getItem(id.Value);
-            if(item != null && item.teamleaderID == 11) //here it's 11 waiting for sessio
+            if(item != null && item.teamleaderID == Convert.ToInt32(Session["userID"])) //here it's 11 waiting for sessio
                 item.ProjectState = 1;
                 leaders.updateItem(id.Value , item);
             return RedirectToAction("Requested");
@@ -78,7 +80,7 @@ namespace InternetApplicationProject.Controllers
             if (id == null) { return RedirectToAction("Requested"); }
 
             teamLeaderProjects item = leaders.getItem(id.Value);
-            if (item != null && item.teamleaderID == 11) //here it's 11 waiting for sessio
+            if (item != null && item.teamleaderID == Convert.ToInt32(Session["userID"])) //here it's 11 waiting for sessio
                 item.ProjectState = 3;
             leaders.updateItem(id.Value, item);
             return RedirectToAction("Requested");
@@ -90,8 +92,8 @@ namespace InternetApplicationProject.Controllers
         {
             projectViewModel allProjects = new projectViewModel
             {
-                joined = leaders.getJoinedProjects(11),
-                deliverd = leaders.getDeliveredProjects(11)
+                joined = leaders.getJoinedProjects(Convert.ToInt32(Session["userID"])),
+                deliverd = leaders.getDeliveredProjects(Convert.ToInt32(Session["userID"]))
             };
             return View(allProjects);
         }
@@ -100,7 +102,7 @@ namespace InternetApplicationProject.Controllers
 
         public ActionResult Evaluate()
         {
-            TempData["ID"] = 11;
+            TempData["ID"] = Convert.ToInt32(Session["userID"]);
             return View();
         }
 
@@ -111,7 +113,7 @@ namespace InternetApplicationProject.Controllers
             if(id == null) { return RedirectToAction("Index"); }
             if(!projects.isProject(id.Value)) { return RedirectToAction("Index"); }
 
-            if (! leaders.isProjectRelated(11,id.Value)) { return RedirectToAction("Index"); }
+            if (! leaders.isProjectRelated(Convert.ToInt32(Session["userID"]), id.Value)) { return RedirectToAction("Index"); }
             teamLeaderProjects p = leaders.getItemByProjectId(id.Value);
             if (p.ProjectState != 1) { return RedirectToAction("Index"); }
             p.ProjectState = 3;
@@ -128,7 +130,7 @@ namespace InternetApplicationProject.Controllers
         {
             if(id == null || uid == null) { return RedirectToAction("Index"); }
             if(! users.isUser(uid.Value)) { return RedirectToAction("Index"); }
-            if(! leaders.isIdRelated(id.Value, 11)) { return RedirectToAction("Index"); }
+            if(! leaders.isIdRelated(id.Value, Convert.ToInt32(Session["userID"]))) { return RedirectToAction("Index"); }
 
             teamLeaderProjects t = leaders.getItem(id.Value);
             if (t.memberOne == uid.Value) t.memberOne = 0;
@@ -146,13 +148,13 @@ namespace InternetApplicationProject.Controllers
         public ActionResult EvaluateMember(String names , String text)
         {
             if(names == null) { return RedirectToAction("Index"); }
-            if(! leaders.isMemberRelated(11 , int.Parse(names))) { return RedirectToAction("Index"); }
-            if((! users.isUser(11) || (! users.isUser(int.Parse(names))))) { return RedirectToAction("Index"); }
+            if(! leaders.isMemberRelated(Convert.ToInt32(Session["userID"]), int.Parse(names))) { return RedirectToAction("Index"); }
+            if((! users.isUser(Convert.ToInt32(Session["userID"])) || (! users.isUser(int.Parse(names))))) { return RedirectToAction("Index"); }
             if (text == null) { text = ""; }
             int memberId = int.Parse(names);
 
             FeedBacks newOne = new FeedBacks();
-            newOne.leaderId = 11;
+            newOne.leaderId = Convert.ToInt32(Session["userID"]);
             newOne.feedback = text;
             newOne.memberId = memberId;
 
@@ -166,7 +168,7 @@ namespace InternetApplicationProject.Controllers
         [HttpGet]
         public ActionResult RequestMember()
         {
-            TempData["ID"] = 11;
+            TempData["ID"] = Convert.ToInt32(Session["userID"]);
             return View(new requestsForTeam());
         }
 
@@ -185,10 +187,10 @@ namespace InternetApplicationProject.Controllers
 
         public ActionResult statistics()
         {
-            ViewData["r"] = leaders.getRequestedProjects(11).Count();
-            ViewData["j"] = leaders.getJoinedProjects(11).Count();
-            ViewData["d"] = leaders.getDeliveredProjects(11).Count();
-            ViewData["l"] = leaders.getLeavedProjects(11).Count();
+            ViewData["r"] = leaders.getRequestedProjects(Convert.ToInt32(Session["userID"])).Count();
+            ViewData["j"] = leaders.getJoinedProjects(Convert.ToInt32(Session["userID"])).Count();
+            ViewData["d"] = leaders.getDeliveredProjects(Convert.ToInt32(Session["userID"])).Count();
+            ViewData["l"] = leaders.getLeavedProjects(Convert.ToInt32(Session["userID"])).Count();
             return View();
         }
     }

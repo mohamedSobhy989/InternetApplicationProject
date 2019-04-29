@@ -7,6 +7,7 @@ using InternetApplicationProject.Models;
 
 namespace InternetApplicationProject.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         public handleUsers users = new handleUsers();
@@ -17,7 +18,7 @@ namespace InternetApplicationProject.Controllers
         public ActionResult Index()
         {
             //to view all admin information
-            Users user = new handleUsers().getUser(7); //to be replaced with session user
+            Users user = new handleUsers().getUser(Convert.ToInt32(Session["userID"])); //to be replaced with session user
             return View(user);
         }
 
