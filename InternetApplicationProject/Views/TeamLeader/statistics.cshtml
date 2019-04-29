@@ -1,0 +1,11 @@
+﻿<div>
+    @{
+        var myChart = new Chart(width: 600, height: 400, theme: ChartTheme.Green)
+            .AddTitle("Leader progress")
+            .AddSeries(
+                name: "ChartTitle",
+                xValue: new[] { "requested", "joined", "leaved", "delived" },
+                yValues: new[] { ViewData["r"], ViewData["j"], ViewData["l"], ViewData["d"] })
+            .Write();
+    }
+</div>

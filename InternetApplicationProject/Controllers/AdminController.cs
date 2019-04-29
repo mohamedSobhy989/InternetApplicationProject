@@ -7,15 +7,18 @@ using InternetApplicationProject.Models;
 
 namespace InternetApplicationProject.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         public handleUsers users = new handleUsers();
         public handleProjects projects = new handleProjects();
+        public handleMemberFeedBacks feedbacks = new handleMemberFeedBacks();
+
         // GET: Admin
         public ActionResult Index()
         {
             //to view all admin information
-            Users user = new handleUsers().getUser(7); //to be replaced with session user
+            Users user = new handleUsers().getUser(Convert.ToInt32(Session["userID"])); //to be replaced with session user
             return View(user);
         }
 
@@ -59,6 +62,7 @@ namespace InternetApplicationProject.Controllers
         public ActionResult Edit(int id , Users newUser)
         {
             users.updateUser(id, newUser);
+            users.checkOrNormalize();
             return RedirectToAction("Index");
         }
 
@@ -69,6 +73,7 @@ namespace InternetApplicationProject.Controllers
             if(id == null) { return RedirectToAction("Index"); }
             users.deleteUser(id.Value);
             //reflect all deletions here
+            users.checkOrNormalize();
             return RedirectToAction("Index");
         }
 
@@ -116,6 +121,7 @@ namespace InternetApplicationProject.Controllers
             if (id == null) { return RedirectToAction("Index"); }
             projects.deleteProject(id.Value);
             //reflect all deletions here
+            projects.checkOrNormalize();
             return RedirectToAction("Index");
         }
 

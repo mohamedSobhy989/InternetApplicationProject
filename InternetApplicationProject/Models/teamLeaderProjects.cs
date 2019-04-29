@@ -21,11 +21,17 @@ namespace InternetApplicationProject.Models
         public int directorID { get; set; }
 
         // {0 , 1 , 2}
-        // 0 is not delevered
+        // 0 is delevered
         // 1 is joining
         // 2 is requested
-
         // 3 is rejected from the leader
         public int ProjectState { get; set; }
+
+        
+        public int memberOne   { get; set; }
+
+        public int memberTwo   { get; set; }
+
+        public int memberThree { get; set; }
     }
 }

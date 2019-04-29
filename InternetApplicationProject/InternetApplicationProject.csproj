@@ -189,9 +189,28 @@
     <Compile Include="Migrations\201904251429168_initialDb.Designer.cs">
       <DependentUpon>201904251429168_initialDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904261543302_leaderTableUpdate.cs" />
+    <Compile Include="Migrations\201904261543302_leaderTableUpdate.Designer.cs">
+      <DependentUpon>201904261543302_leaderTableUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904281449240_withFeedback.cs" />
+    <Compile Include="Migrations\201904281449240_withFeedback.Designer.cs">
+      <DependentUpon>201904281449240_withFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904281456596_withFeedback2.cs" />
+    <Compile Include="Migrations\201904281456596_withFeedback2.Designer.cs">
+      <DependentUpon>201904281456596_withFeedback2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904281504237_withFeedback21.cs" />
+    <Compile Include="Migrations\201904281504237_withFeedback21.Designer.cs">
+      <DependentUpon>201904281504237_withFeedback21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FeedBacks.cs" />
+    <Compile Include="Models\handleMemberFeedBacks.cs" />
     <Compile Include="Models\handleProjects.cs" />
+    <Compile Include="Models\handleRequests.cs" />
     <Compile Include="Models\handleTeamLeader.cs" />
     <Compile Include="Models\handleUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -199,6 +218,7 @@
     <Compile Include="Models\projectAssignedDirector.cs" />
     <Compile Include="Models\projectMembers.cs" />
     <Compile Include="Models\Projects.cs" />
+    <Compile Include="Models\projectViewModel.cs" />
     <Compile Include="Models\requestsForTeam.cs" />
     <Compile Include="Models\teamLeaderProjects.cs" />
     <Compile Include="Models\Users.cs" />
@@ -272,6 +292,11 @@
     <Content Include="Views\TeamLeader\ViewDirector.cshtml" />
     <Content Include="Views\TeamLeader\ViewProject.cshtml" />
     <Content Include="Views\TeamLeader\Index.cshtml" />
+    <Content Include="Views\TeamLeader\projectStatues.cshtml" />
+    <Content Include="Views\TeamLeader\Evaluate.cshtml" />
+    <Content Include="Views\TeamLeader\EvaluateMember.cshtml" />
+    <Content Include="Views\TeamLeader\RequestMember.cshtml" />
+    <Content Include="Views\TeamLeader\statistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,6 +320,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904251429168_initialDb.resx">
       <DependentUpon>201904251429168_initialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904261543302_leaderTableUpdate.resx">
+      <DependentUpon>201904261543302_leaderTableUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904281449240_withFeedback.resx">
+      <DependentUpon>201904281449240_withFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904281456596_withFeedback2.resx">
+      <DependentUpon>201904281456596_withFeedback2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904281504237_withFeedback21.resx">
+      <DependentUpon>201904281504237_withFeedback21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,102 @@
+﻿@model InternetApplicationProject.Models.teamLeaderProjects
+@using InternetApplicationProject.Models
+
+@{
+    ViewBag.Title = "Evaluate";
+    handleTeamLeader leaders = new handleTeamLeader();
+    handleProjects projects = new handleProjects();
+    handleUsers users = new handleUsers();
+}
+
+<h2>Evaluate</h2>
+
+<div>
+    <h3>Leaving projects</h3><br />
+    <dl class="dl-horizontal">
+        @{
+            IEnumerable<teamLeaderProjects> p = leaders.getJoinedProjects((int)TempData["ID"]);
+        }
+        @if (p.Count() != 0)
+        {
+            foreach (var item in p)
+            {
+                <dt>
+                    @Html.Label(("Project name < " + projects.getProjectName(item.projectID) + " >"), htmlAttributes: new { @class = "control-label col-lg" })
+                </dt>
+                <dd>
+                    @Html.ActionLink("Leave", "LeaveProject", new { id = item.projectID });
+                </dd>
+            }
+        }
+        else
+        {
+            <dt>
+                <span>no projects to view</span>
+            </dt>
+        }
+    </dl>
+</div>
+
+<hr />
+<div>
+    <h3>Removing project member</h3><br />
+    <dl class="dl-horizontal">
+        @if (p.Count() != 0)
+        {
+            foreach (var item in p)
+            {
+                <dt>
+                    @Html.Label(("Project Name  < " + projects.getProjectName(item.projectID) + " >") , htmlAttributes: new { @class= "control-label col-lg" })
+
+
+                    @foreach (var item2 in leaders.getProjectUsers(item.projectID, (int)TempData["ID"]))
+                    {
+                    <dd>
+                        @item2.FirstName |
+                        @Html.ActionLink("remove", "RemoveMember", new { id = item.Id, uid = item2.Id } , new { @class= "control-label col-lg" })
+                    </dd>
+
+                }
+                    </dt>
+                }
+            }
+            else
+            {
+                <dt>
+                    <span>no projects to view</span>
+                </dt>
+            }
+    </dl>
+</div>
+
+<hr />
+<div>
+    <h3>Evaluate project member</h3><br />
+    @using (Html.BeginForm("EvaluateMember" , "TeamLeader" , FormMethod.Get))
+    {
+
+        List<SelectListItem> listItems = new List<SelectListItem>();
+
+        foreach (var item3 in leaders.getAllRelatedMembers((int)TempData["ID"]))
+        {
+            if (!users.isUser(item3.Id)) { continue; }
+            listItems.Add(new SelectListItem
+            {
+                Text = item3.FirstName + " " + item3.LastName,
+                Value = item3.Id.ToString()
+
+            });
+        }
+        @Html.Label("Members name", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownList("names", listItems, new { @class = "form-control" })
+        <br />
+        @Html.Label("Your opinion", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextArea("text", new { @class = "form-control" });
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>

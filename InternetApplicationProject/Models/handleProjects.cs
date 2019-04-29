@@ -90,5 +90,24 @@ namespace InternetApplicationProject.Models
         {
             return bda.project.ToList().SingleOrDefault(item => item.Id == id) == null ? false : true;
         }
+
+        //---------------------------------------------------------------
+
+        public void checkOrNormalize()
+        {
+            foreach(var item1 in bda.R_ForTeam.ToList()) {
+                if(! isProject(item1.projectID)) {
+                    bda.R_ForTeam.Remove(item1);
+                    bda.SaveChanges();
+                }
+            }
+
+            foreach (var item2 in bda.TL_Project.ToList()) {
+                if(! isProject(item2.projectID)) {
+                    bda.TL_Project.Remove(item2);
+                    bda.SaveChanges();
+                }
+            }
+        }
     }
 }

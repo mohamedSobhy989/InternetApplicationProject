@@ -4,10 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav  navbar-fixed-side navbar-fixed-side-left">
+                <li>@Html.ActionLink("Requested projects", "Requested")</li>
+                <li>@Html.ActionLink("Projects Statues", "ProjectStatues")</li>
+                <li>@Html.ActionLink("Statistics", "statistics")</li>
+                <li>@Html.ActionLink("Request team member", "RequestMember")</li>
+                <li>@Html.ActionLink("Evaluating", "Evaluate")</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <div>
-    <h4>Users</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

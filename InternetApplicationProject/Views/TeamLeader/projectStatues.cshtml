@@ -1,0 +1,64 @@
+﻿@model InternetApplicationProject.Models.projectViewModel
+@using InternetApplicationProject.Models;
+
+@{
+    ViewBag.Title = "projectStatues";
+}
+
+<h3>Joined Projects</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Project Name")
+        </th>
+        <th></th>
+    </tr>
+    @{
+        var joined = Model.joined;
+        if (joined.Count() != 0)
+        {
+            foreach (var item in joined)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(new handleProjects().getProjectName(item.projectID), "ViewProject", new { id = item.projectID })
+                    </td>
+
+                </tr>
+            }
+        }
+        else { <tr><td>no projects to view</td></tr> }
+    }
+</table>
+
+<br />
+<hr />
+<br />
+
+<h3>Delivered Projects</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Project Name")
+        </th>
+        <th></th>
+    </tr>
+    @{
+        var delived = Model.deliverd;
+        if(delived.Count() != 0)
+        {
+            foreach (var item in delived)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(new handleProjects().getProjectName(item.projectID), "ViewProject", new { id = item.projectID })
+                    </td>
+
+                </tr>
+            }
+        }
+        else { <tr><td>no projects to view</td></tr> }
+    }
+</table>
